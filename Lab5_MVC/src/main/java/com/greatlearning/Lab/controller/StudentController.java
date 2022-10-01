@@ -23,7 +23,7 @@ public class StudentController {
 	@RequestMapping("/list")
 	public String listStudent(Model theModel) {
 
-		// get Books from db
+		// get Students from db
 		List<Student> theStudents = studentService.findAll();
 
 		// add to the spring model
@@ -69,7 +69,7 @@ public class StudentController {
 			theStudent.setCountry(country);
 		} else
 			theStudent = new Student(firstname,lastname,department,country);
-		// save the Book
+		// save the student
 		studentService.save(theStudent);
 
 		// use a redirect to prevent duplicate submissions
@@ -79,10 +79,10 @@ public class StudentController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("studentId") int theId) {
 
-		// delete the Book
+		// delete the student
 		studentService.deleteById(theId);
 
-		// redirect to /Books/list
+		// redirect to /studetn/list
 		return "redirect:/student/list";
 
 	}
@@ -90,10 +90,10 @@ public class StudentController {
 	@RequestMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("studentId") int theId,Model theModel) {
 
-		// delete the Book
+		// delete the student
 		Student theStudent = studentService.findById(theId);
 		theModel.addAttribute("Student", theStudent);
-		// redirect to /Books/list
+		// redirect to /student/list
 		return "student-form";
 
 	}
